@@ -1,0 +1,12 @@
+@API_HostAddress = https://localhost:7189
+
+###
+
+GET {{API_HostAddress}}/api/users/
+Accept: application/json
+
+###
+
+GET {{API_HostAddress}}/api/users/1/
+Accept: application/json
+###
