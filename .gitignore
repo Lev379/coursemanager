@@ -491,3 +491,10 @@ $RECYCLE.BIN/
 *.db
 *.db-shm
 *.db-wal
+
+# Postman Set
+postman_set.http
+
+# Client (temporary)
+/client
+/client/*

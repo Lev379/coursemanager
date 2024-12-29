@@ -1,12 +1,43 @@
-@API_HostAddress = https://localhost:7189
+@url = https://localhost:7189
 
 ###
-
-GET {{API_HostAddress}}/api/users/
+# @name Get users
+GET {{url}}/api/users/
 Accept: application/json
 
 ###
-
-GET {{API_HostAddress}}/api/users/1/
+# @name Get user
+GET {{url}}/api/users/1/
 Accept: application/json
+
 ###
+# @name Register user query string
+POST {{url}}/api/account/register?
+    username=sam&
+    password=password
+
+###
+# @name Register user
+POST {{url}}/api/account/register
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "password"
+}
+
+
+###
+# @name Login
+POST {{url}}/api/account/login
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "password"
+}
+
+###
+# @name Get User With Bearer token
+GET {{url}}/api/users/2
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJqb2huIiwibmJmIjoxNzM1MjM1ODQ4LCJleHAiOjE3MzU4NDA2NDgsImlhdCI6MTczNTIzNTg0OH0.ED2MF3_vUugblZPobzVMx2n1UwYqcWtpi0SfAIKIiFDBr2hBHh4cAamL62nB2D642WhEce1aH3nD2ln1W1xO6Q
