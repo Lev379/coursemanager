@@ -45,7 +45,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
     {
         var user = await context.Users.FirstOrDefaultAsync(user => user.UserName == loginDto.Username);
         
-        if (user is null) return Unauthorized("Invalid username");
+        if (user is null) return Unauthorized(new { message = "Invalid username" });
         
         using var hmac = new HMACSHA512(user.PasswordSalt);
         var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));

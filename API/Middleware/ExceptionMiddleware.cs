@@ -12,23 +12,29 @@ public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddlewa
         {
             await next(context);
         }
-        catch (Exception exception)
+        catch (Exception ex)
         {
-            logger.LogError(exception, exception.Message);
+            if (context.Response.HasStarted)
+            {
+                logger.LogWarning("The response has already started, cannot overwrite. ExceptionMiddleware cannot handle this error.");
+                throw;
+            }
+
+            logger.LogError(ex, ex.Message);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             var response = env.IsDevelopment()
-                ? new ApiExceptions(context.Response.StatusCode, exception.Message, exception.StackTrace)
-                : new ApiExceptions(context.Response.StatusCode, exception.Message, "Internal Server Error");
+                ? new ApiExceptions(context.Response.StatusCode, ex.Message, ex.StackTrace)
+                : new ApiExceptions(context.Response.StatusCode, ex.Message, "Internal Server Error");
 
             var options = new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
-            
+
             var json = JsonSerializer.Serialize(response, options);
-            
+
             await context.Response.WriteAsync(json);
         }
     }
