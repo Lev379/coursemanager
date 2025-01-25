@@ -8,5 +8,11 @@ public class UserDto
     public required string Username { get; set; }
     
     [Required]
+    public required string KnownAs { get; set; }
+    
+    [Required]
     public required string Token { get; set; }
+    
+    [Required]
+    public string? PhotoUrl { get; set; }
 }
