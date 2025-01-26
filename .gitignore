@@ -494,7 +494,3 @@ $RECYCLE.BIN/
 
 # Postman Set
 postman_set.http
-
-# Client (temporary)
-/client
-/client/*
