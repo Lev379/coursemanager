@@ -11,7 +11,7 @@ export class NavigationComponent {
   items = [
     {label: 'Wonderful App', icon: 'pi pi-fw pi-home', routerLink: ['/home']},
     {label: 'Matches', icon: 'pi pi-fw pi-user', routerLink: ['/matches']},
-    {label: 'Lists', icon: 'pi pi-fw pi-list', routerLink: ['/lisst']},
+    {label: 'Lists', icon: 'pi pi-fw pi-list', routerLink: ['/list']},
     {label: 'Messages', icon: 'pi pi-fw pi-inbox', routerLink: ['/messages']}
   ]
 }
