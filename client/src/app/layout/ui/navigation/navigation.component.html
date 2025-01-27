@@ -1,0 +1,3 @@
+<p-menubar [model]="items" />
+<p-button (click)="showLoginDialog()" icon="pi pi-user" label="Login"/>
+<app-login-dialog [(isVisible$)]="isLoginDialogOpen$" />
