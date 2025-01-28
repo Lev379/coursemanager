@@ -4,12 +4,12 @@ import { Button } from 'primeng/button';
 import { LoginDialogComponent } from '../../login/login-dialog.component';
 
 @Component({
-  selector: 'app-navigation',
+  selector: 'app-nav-bar',
   imports: [MenubarModule, Button, LoginDialogComponent],
-  templateUrl: './navigation.component.html',
+  templateUrl: './nav-bar.component.html',
   styleUrl: './navigation.component.scss',
 })
-export class NavigationComponent {
+export class NavBarComponent {
   items = [
     { label: 'Wonderful App', icon: 'pi pi-fw pi-home', routerLink: ['/home'] },
     { label: 'Matches', icon: 'pi pi-fw pi-user', routerLink: ['/matches'] },

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavigationComponent } from '../ui/navigation/navigation.component';
+import { NavBarComponent } from '../ui/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-home',
-  imports: [NavigationComponent],
+  imports: [NavBarComponent],
   templateUrl: './page.component.html',
   styleUrl: './page.component.scss',
 })
