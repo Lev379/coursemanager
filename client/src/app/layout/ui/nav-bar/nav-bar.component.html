@@ -1,3 +1,6 @@
-<p-menubar [model]="items" />
-<p-button (click)="showLoginDialog()" icon="pi pi-user" label="Login"/>
-<app-login-dialog [(isVisible$)]="isLoginDialogOpen$" />
+<p-menubar [model]="items">
+  <ng-template #end>
+    <p-button (click)="showLoginDialog()" icon="pi pi-user" label="Login"/>
+  </ng-template>
+</p-menubar>
+<app-login-dialog [(isVisible$)]="isLoginDialogOpen$"/>
