@@ -1,4 +1,7 @@
-@use "tailwindcss";
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   font-family: 'Verdana', sans-serif;
