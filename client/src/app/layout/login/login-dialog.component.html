@@ -1,39 +1,58 @@
-<p-dialog maskStyleClass="backdrop-blur-sm" [(visible)]="isVisible$" styleClass="!border-0 !bg-transparent">
-  <ng-template #headless>
-    <div
-      (clickOutside)="closeDialog()"
-      class="flex flex-col px-8 py-8 gap-6 rounded-2xl"
-      style="border-radius: 12px; background-image: radial-gradient(circle at left top, var(--p-primary-400), var(--p-primary-700))"
-    >
-      <div class="inline-flex flex-col gap-2">
-        <label for="username" class="text-primary-50 font-semibold">Username</label>
-        <input pInputText id="username" class="!bg-white/20 !border-0 !p-4 !text-primary-50 w-80"/>
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <p-dialog maskStyleClass="backdrop-blur-sm" [(visible)]="isVisible$" styleClass="!border-0 !bg-transparent">
+    <ng-template #headless>
+      <div
+        (clickOutside)="closeDialog()"
+        class="flex flex-col px-8 py-8 gap-6 rounded-2xl"
+        style="border-radius: 12px; background-image: radial-gradient(circle at left top, var(--p-primary-400), var(--p-primary-700))"
+      >
+        <div class="inline-flex flex-col gap-2">
+          <label for="username" class="text-primary-50 font-semibold">Username</label>
+          <input
+            #username="ngModel"
+            [(ngModel)]="model.username"
+            pInputText
+            id="username"
+            class="!bg-white/20 !border-0 !p-4 !text-primary-50 w-80"
+            name="username"
+            autocomplete="username"
+            required/>
+          <div [hidden]="username.valid || username.pristine">Username is required</div>
+        </div>
+        <div class="inline-flex flex-col gap-2">
+          <label for="password" class="text-primary-50 font-semibold">Password</label>
+          <input
+            #password="ngModel"
+            [(ngModel)]="model.password"
+            pInputText
+            id="password"
+            class="!bg-white/20 !border-0 !p-4 !text-primary-50 w-80"
+            type="password"
+            name="password"
+            autocomplete="current-password"
+            required
+          />
+          <div [hidden]="password.valid || password.pristine">Password is required</div>
+        </div>
+        <div class="flex items-center gap-4">
+          <p-button
+            label="Cancel"
+            (click)="closeDialog()"
+            [text]="true"
+            styleClass="!p-4 w-full !text-primary-50 !border !border-white/30 hover:!bg-white/10"
+            class="w-full"
+          />
+          <p-button
+            label="Sign-In"
+            type="submit"
+            [disabled]="!loginForm.form.valid"
+            (click)="closeDialog()"
+            [text]="true"
+            styleClass="!p-4 w-full !text-primary-50 !border !border-white/30 hover:!bg-white/10"
+            class="w-full"
+          />
+        </div>
       </div>
-      <div class="inline-flex flex-col gap-2">
-        <label for="password" class="text-primary-50 font-semibold">Password</label>
-        <input
-          pInputText
-          id="password"
-          class="!bg-white/20 !border-0 !p-4 !text-primary-50 w-80"
-          type="password"
-        />
-      </div>
-      <div class="flex items-center gap-4">
-        <p-button
-          label="Cancel"
-          (click)="closeDialog()"
-          [text]="true"
-          styleClass="!p-4 w-full !text-primary-50 !border !border-white/30 hover:!bg-white/10"
-          class="w-full"
-        />
-        <p-button
-          label="Sign-In"
-          (click)="closeDialog()"
-          [text]="true"
-          styleClass="!p-4 w-full !text-primary-50 !border !border-white/30 hover:!bg-white/10"
-          class="w-full"
-        />
-      </div>
-    </div>
-  </ng-template>
-</p-dialog>
+    </ng-template>
+  </p-dialog>
+</form>
