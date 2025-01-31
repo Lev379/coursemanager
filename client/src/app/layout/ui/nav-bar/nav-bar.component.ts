@@ -1,8 +1,7 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { Button } from 'primeng/button';
 import { LoginDialogComponent } from '../../login/login-dialog.component';
-import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,9 +9,7 @@ import { AuthService } from '../../../auth/services/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrl: './navigation.component.scss',
 })
-export class NavBarComponent implements OnInit {
-  private readonly _authService = inject(AuthService);
-
+export class NavBarComponent {
   items = [
     { label: 'Wonderful App', icon: 'pi pi-fw pi-home', routerLink: ['/home'] },
     { label: 'Matches', icon: 'pi pi-fw pi-user', routerLink: ['/matches'] },
@@ -22,19 +19,7 @@ export class NavBarComponent implements OnInit {
 
   isLoginDialogOpen$ = signal(false);
 
-  get isLoggedIn$() {
-    return this._authService.isLoggedIn$;
-  }
-
   showLoginDialog() {
     this.isLoginDialogOpen$.set(true);
-  }
-
-  logout() {
-    this._authService.logout();
-  }
-
-  ngOnInit() {
-    this._authService.setCurrentUser();
   }
 }
