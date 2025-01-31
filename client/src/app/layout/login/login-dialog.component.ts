@@ -5,8 +5,7 @@ import { ClickOutsideDirective } from '../../shared/ui/directives/click-outside/
 import { InputText } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth/services/auth.service';
-import { LoginModel } from '../../auth/models/Login.model';
-import { HttpClientModule } from '@angular/common/http';
+import { LoginModel } from '../../auth/models/login.model';
 
 @Component({
   selector: 'app-login-dialog',
@@ -34,7 +33,6 @@ export class LoginDialogComponent {
   onSubmit() {
     this._authService.login(this.model).subscribe({
       next: res => {
-        console.log(res);
         this.model.clearInput();
         this.closeDialog();
       },
