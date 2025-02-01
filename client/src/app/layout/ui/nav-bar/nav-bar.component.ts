@@ -1,17 +1,23 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { Button } from 'primeng/button';
-import { LoginDialogComponent } from '../../login/login-dialog.component';
-import { AuthService } from '../../../auth/services/auth.service';
+import { LoginDialogComponent } from '@auth/login/ui/login-dialog/login-dialog.component';
+import { AuthService } from '@shared/data-access/auth.service';
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'layout-nav-bar',
   imports: [MenubarModule, Button, LoginDialogComponent],
   templateUrl: './nav-bar.component.html',
   styleUrl: './navigation.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavBarComponent implements OnInit {
-  private readonly _authService = inject(AuthService);
+export class NavBarComponent {
+  private _authService = inject(AuthService);
 
   items = [
     { label: 'Wonderful App', icon: 'pi pi-fw pi-home', routerLink: ['/home'] },
@@ -32,9 +38,5 @@ export class NavBarComponent implements OnInit {
 
   logout() {
     this._authService.logout();
-  }
-
-  ngOnInit() {
-    this._authService.setCurrentUser();
   }
 }
